@@ -1,0 +1,27 @@
+type: custom:power-topology-card
+title: Energiefluss
+# Alle sensor.placeholder_* Entities durch eigene Entities ersetzen.
+nodes:
+  - { id: pv1, type: solar, name: PV1, x: 0, y: 5, power: sensor.placeholder_pv1_power }
+  - { id: pv2, type: solar, name: PV2, x: 0, y: 30, power: sensor.placeholder_pv2_power }
+  - { id: pv3, type: solar, name: PV3, x: 0, y: 65, power: sensor.placeholder_pv3_power }
+  - { id: pv4, type: solar, name: PV4, x: 0, y: 90, power: sensor.placeholder_pv4_power }
+  - { id: battery_1, type: battery, name: Speicher 1, x: 23, y: 18, power: sensor.placeholder_battery1_power, soc: sensor.placeholder_battery1_soc, entity: sensor.placeholder_battery1_soc }
+  - { id: battery_2, type: battery, name: Speicher 2, x: 45, y: 18, power: sensor.placeholder_battery2_power, soc: sensor.placeholder_battery2_soc, entity: sensor.placeholder_battery2_soc }
+  - { id: battery_3, type: battery, name: Speicher 3, x: 23, y: 78, power: sensor.placeholder_battery3_power, soc: sensor.placeholder_battery3_soc, entity: sensor.placeholder_battery3_soc }
+  - { id: battery_4, type: battery, name: Speicher 4, x: 45, y: 78, power: sensor.placeholder_battery4_power, soc: sensor.placeholder_battery4_soc, entity: sensor.placeholder_battery4_soc }
+  - { id: inverter, type: inverter, name: Wechselrichter, x: 65, y: 48, power: sensor.placeholder_inverter_power }
+  - { id: home, type: home, name: Haus, x: 83, y: 48, power: sensor.placeholder_home_power }
+  - { id: grid, type: grid, name: Netz, x: 100, y: 48, power: sensor.placeholder_grid_power }
+connections:
+  - { from: pv1, to: battery_1, entity: sensor.placeholder_pv1_to_battery1_power }
+  - { from: pv2, to: battery_1, entity: sensor.placeholder_pv2_to_battery1_power }
+  - { from: battery_1, to: battery_2, entity: sensor.placeholder_battery1_to_battery2_power }
+  - { from: pv3, to: battery_3, entity: sensor.placeholder_pv3_to_battery3_power }
+  - { from: pv4, to: battery_3, entity: sensor.placeholder_pv4_to_battery3_power }
+  - { from: battery_3, to: battery_4, entity: sensor.placeholder_battery3_to_battery4_power }
+  - { from: battery_2, to: inverter, entity: sensor.placeholder_battery2_to_inverter_power }
+  - { from: battery_4, to: inverter, entity: sensor.placeholder_battery4_to_inverter_power }
+  - { from: inverter, to: home, entity: sensor.placeholder_inverter_to_home_power }
+  # Positiv: Haus -> Netz (Export), negativ: Netz -> Haus (Import).
+  - { from: home, to: grid, entity: sensor.placeholder_home_to_grid_power }

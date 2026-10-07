@@ -1,0 +1,15 @@
+{
+  "name": "power-topology-card",
+  "version": "0.1.0",
+  "description": "A configurable Home Assistant energy topology card",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "esbuild src/power-topology-card.js --bundle --format=esm --target=es2020 --outfile=dist/power-topology-card.js",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "happy-dom": "^20.14.5"
+  }
+}
